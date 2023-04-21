@@ -20,9 +20,8 @@ f3aux n q | n == 1 = q
 
 --d)
 f4 :: Integer -> Integer -> Integer
-f4 n q = f3aux (2*n) q
+f4 n q = f4aux (2*n) n q
 
-f4aux :: Integer -> Integer -> Integer
-f4aux n q | n == (div n 2) = q 
-          | otherwise = q ^ n + f4aux (n-1) q
-        
+f4aux :: Integer -> Integer -> Integer -> Integer
+f4aux sup inf q | sup == inf = q^sup 
+                | otherwise = q^sup + f4aux (sup -1) inf q
