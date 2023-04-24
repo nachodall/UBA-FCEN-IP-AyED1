@@ -16,8 +16,34 @@ esDivisible x y | x==y = True
                 | otherwise = esDivisible(x-y) y
 
 --b) Implementar la funcion esPrimo :: Integer ->Bool que indica si un numero natural pasado como parametro es primo.
-esPrimo :: Integer -> Bool
-esPrimo n = menorDivisor n == n
+    esPrimo :: Integer -> Bool
+    esPrimo n = menorDivisor n == n
 
 --c) Implementar la funcion sonCoprimos :: Integer ->Integer ->Bool que dados dos numeros naturales indica si no
 --tienen algun divisor en comun mayor estricto que 1.
+
+sonCoprimos :: Integer -> Integer -> Bool
+sonCoprimos x y = coprimosAux x y  2
+
+coprimosAux :: Integer -> Integer -> Integer -> Bool
+coprimosAux x y divisor | divisor > x || divisor > y = True
+                         | (esDivisible x divisor) && (esDivisible y divisor) = False
+                         | otherwise = coprimosAux x y (divisor + 1)
+
+--d) Implementar la funcion nEsimoPrimo :: Integer ->Integer que devuelve el n-esimo primo (n ≥ 1). Recordar que el
+--primer primo es el 2, el segundo es el 3, el tercero es el 5, etc
+
+nEsimoPrimo :: Integer -> Integer
+nEsimoPrimo n = primoAux n 1 0
+
+primoAux :: Integer -> Integer -> Integer -> Integer
+primoAux n aux cont | n == cont = aux - 1 --aux se aumento en uno luego de encontrar el nesimo primo
+                    | esPrimo aux == True = primoAux n (aux+1) (cont+1) 
+                    | otherwise = primoAux n (aux+1) cont
+
+
+
+
+
+            
+
