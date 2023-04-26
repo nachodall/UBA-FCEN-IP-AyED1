@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 --auxiliares
 longitud :: [t] -> Integer
 longitud []  = 0
@@ -36,7 +36,7 @@ sumarElPrimero (x:xs) = sumarN x (x:xs)
 --3.6 sumarElUltimo :: [Integer] -> [Integer] segun la siguiente especificacion:
 sumarElUltimo :: [Integer] -> [Integer]
 sumarElUltimo (x:xs) = sumarN (ultimo xs) (x:xs)
-=======
+
 --auxiliares
 longitud :: [t] -> Integer
 longitud []  = 0
@@ -100,4 +100,3 @@ insertarOrdenado :: Integer -> [Integer] -> [Integer]
 insertarOrdenado n [] = [n]
 insertarOrdenado n (x:xs) | n <= x = (n:x:xs)
                           | otherwise = x : (insertarOrdenado n xs)
->>>>>>> d95586d (p5e3)
