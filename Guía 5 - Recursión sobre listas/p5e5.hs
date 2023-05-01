@@ -1,0 +1,57 @@
+--auxiliares
+longitud :: [a] -> Integer
+longitud [] = 0
+longitud [x] = 1
+longitud (x:xs) = 1 + longitud xs
+
+reversoPM :: [t] -> [t]
+reversoPM [] = []
+reversoPM (x:xs) = (reversoPM xs)  ++ [x]
+
+
+--5.1 nat2bin :: Integer -> [Integer], que recibe un n´umero no negativo y lo transforma en una lista de bits correspondiente a su representacion binaria. 
+--Por ejemplo nat2bin 8 devuelve [1, 0, 0, 0].
+nat2bin :: Integer -> [Integer]
+nat2bin 0 = [0]
+nat2bin 1 = [1]
+nat2bin n | mod n 2 == 0 =  nat2bin (div n 2) ++ [0] 
+          | otherwise =  nat2bin (div n 2) ++ [1]
+
+--5.2 bin2nat :: [Integer] -> Integer 
+bin2nat :: [Integer] -> Integer
+bin2nat binario = bin2natAux binario (longitud binario)
+
+bin2natAux :: [Integer] -> Integer -> Integer
+bin2natAux [] 0 = 0
+bin2natAux (x:xs) i | mod x 2 == 1 = 2^(i-1) + bin2natAux xs (i-1)
+                    | otherwise = bin2natAux xs (i-1)
+
+--5.3 nat2hex :: Integer -> [Char], que recibe un numero no negativo y lo transforma en una lista de caracteres correspondiente a su representacion hexadecimal. 
+--Por ejemplo nat2hex 45 devuelve [’2’, ’D’].
+
+--5.4 sumaAcumulada :: (Num t) => [t] -> [t]:
+sumaAcumulada :: (Num t) => [t] -> [t]
+sumaAcumulada lista = sumaAcumuladaAux lista 0 []
+
+sumaAcumuladaAux :: (Num t) => [t] -> t -> [t] -> [t]
+sumaAcumuladaAux [] _ listaNueva = listaNueva
+sumaAcumuladaAux (x:xs) acumulador listaNueva = sumaAcumuladaAux xs (acumulador + x) (listaNueva ++ [acumulador + x])
+
+--5.5 descomponerEnPrimos :: [Integer] -> [[Integer]] 
+descomponerEnPrimos :: [Integer] -> [[Integer]] 
+descomponerEnPrimos [x] = [factoresPrimos x] 
+descomponerEnPrimos (x:xs) = factoresPrimos x : descomponerEnPrimos xs
+
+factoresPrimos :: Integer -> [Integer]
+factoresPrimos 1 = [1]
+factoresPrimos 0 = [0]
+factoresPrimos n = factorizar n 2 --recordar que 2 es el primer numero primo 
+
+factorizar :: Integer -> Integer -> [Integer]
+factorizar n divisor | divisor * divisor > n = [n] --caso base ya que si n no tiene factores primos menores o iguales que la raíz cuadrada de n entonces n es un número primo.
+                     | mod n divisor == 0 = divisor : (factorizar (div n divisor) divisor) --notar que nunca se agregara un numero no primo ya que no llegaran por ej. el 12 nunca llegara a probar un numero no primo como divisor
+                     | otherwise = factorizar n (divisor+1) 
+
+
+
+
