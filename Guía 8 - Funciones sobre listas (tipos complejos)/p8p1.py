@@ -5,7 +5,7 @@ def pertenece(a:list, n:int) -> bool:
             return True
     return False
 
-#print(pertenece(a,2))
+print(pertenece(a,2))
 
 #1.2
 seq1: list = [1,2,3,4]
@@ -22,8 +22,8 @@ def divideATodos(seq:list, e:int) -> bool:
         i+=1
     return res
 
-#print(divideATodos(seq1,e))
-#print(divideATodos(seq2,e))
+print(divideATodos(seq1,e))
+print(divideATodos(seq2,e))
 
 #1.3 sumaTotal
 def sumaTotal(l:list) -> int:
@@ -32,8 +32,8 @@ def sumaTotal(l:list) -> int:
         res += l[i]
     return res
 
-#print(sumaTotal(seq1))
-#print(sumaTotal(seq2))
+print(sumaTotal(seq1))
+print(sumaTotal(seq2))
 
 #1.4 estanOrdenados
 def estanOrdenados(l:list) -> bool:
@@ -55,7 +55,7 @@ def estanOrdenados2(l:list) -> bool:
         print (i)
         i+=1
     return res
-#print(estanOrdenados2(seq2))
+print(estanOrdenados2(seq2))
 
 #1.5
 listaDePalabras : list = ["hola", "amigos", "como", "estan", "gooooooool"]
@@ -68,7 +68,7 @@ def palabras7(l:list) -> bool:
             break
     return res
 
-#print(palabras7(listaDePalabras))
+print(palabras7(listaDePalabras))
 
 #1.6
 def esPalindromo(a: str) -> bool:
