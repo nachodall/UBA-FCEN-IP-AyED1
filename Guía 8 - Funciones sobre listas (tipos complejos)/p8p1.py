@@ -1,11 +1,6 @@
-from array import *
-
 #1.1
-a: array = array('i',[1,2,3,4,5])
-dimArray = 5
-
-def pertenece(a:array, n:int) -> bool:
-    for i in range(0,dimArray,1):
+def pertenece(a:list, n:int) -> bool:
+    for i in range(0,len(a),1):
         if (a[i] == n):
             return True
     return False
@@ -87,3 +82,82 @@ def esPalindromo(a: str) -> bool:
 
 print(esPalindromo("hola"))
 print(esPalindromo("lbalabl"))
+
+#1.7
+def hayMinus(password:str) -> bool:
+    for char in password:
+        if ("a" <= char <= "z"):
+            return True
+    return False
+
+def hayMayus(password:str) -> bool:
+    for char in password:
+        if ("A" <= char <= "Z"):
+            return True
+    return False
+   
+def hayNumero(password:str) -> bool:
+    for char in password:
+        if ("0" <= char <= "9"):
+            return True
+    return False    
+
+def esVerde(password:str) -> bool:
+    if len(password) > 8:
+        if hayMinus(password):
+            if hayMayus(password):
+                if hayNumero(password):
+                    return True
+    return False
+    
+def esRoja(password:str) -> bool:
+    if len(password) < 5:
+        return True
+    return False
+   
+def analizarPassword(password:str) -> str:
+    if esVerde(password):
+        return "verde"
+    else:
+        if esRoja(password):
+            return "rojo"
+        else:
+            return "amarilla"
+
+print(analizarPassword("12Ar")) #roja
+print(analizarPassword("123rrrrrrrr")) #amarilla
+print(analizarPassword("123Ar2565y")) #verde
+
+#1.8
+def getBalance (transactions:float) -> float:
+    balance: float = 0
+    for movement in transactions: #esto es equivalente a for i in range(0,len(transactions),1)
+        if movement[0] == "I":
+            balance += movement[1]
+        else:
+            if movement[0] == "R":
+                balance -= movement[1]
+    return balance
+
+print(getBalance([("I",100000),("R",20000),("I",50000),("R",20000)]))
+
+#1.9
+def esVocal(letra:str) -> bool:
+    vocales = ["a","e","i","o","u","A","E","I","O","U"]
+    if pertenece(vocales, letra):
+        return True
+    return False
+
+def vocales(palabra:str) -> bool:
+    vocales: int = 0
+    
+    for letra in palabra: #esto es equivalente a for i in range(0,len(palabra),1)
+        if esVocal(letra):
+            vocales+=1
+    
+    if vocales >= 3:
+        return True
+    return False
+
+print(vocales("Alamo"))
+print(vocales("hola"))
