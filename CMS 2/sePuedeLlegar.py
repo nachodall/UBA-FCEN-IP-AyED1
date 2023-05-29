@@ -5,21 +5,22 @@ from typing import Tuple
 # l: List[int]  <--Este es un ejemplo para una lista de enteros.
 # t: Tuple[str,str]  <--Este es un ejemplo para una tupla de strings.
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
+
 def pertenece(e:str, l: List[Tuple[str,str]]) -> bool:
   for i in range (0,len(l),1):
     if e == l[i][0] or e == l[i][1]:
       return True
   return False
  
-def posDeOrigen(origen: str, vuelos: List[Tuple[str, str]]) -> int:
-  pos: int = 0
-  for i in range (0,len(vuelos),1):
-    if origen == vuelos[i][0]:
-      pos = i
-  return pos
 
 def destinoDe(ciudad: str, vuelos: List[Tuple[str, str]]) -> str:
+  res: str = "No hay vuelos disponibles"
+
   for i in range (0,len(vuelos),1):
+    if ciudad == vuelos[i][0]:
+      res = vuelos[i][1]
+
+  return res
     
 
 def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> int :
@@ -27,15 +28,17 @@ def sePuedeLlegar(origen: str, destino: str, vuelos: List[Tuple[str, str]]) -> i
     ciudad: str = origen
     largoDeRuta: int = 0
 
-    while destinoDe(ciudad, vuelos) != destino:
-      largoDeRuta += 1
-
-
-
-  return 0
-
-vuelos = [("BUE","FTE"),("FTE","BRC"),("BRC","USH"),("USH","MDZ")]
-print(posDeOrigen("BRC",vuelos))
+    while ciudad != destino:  
+      if ciudad == "No hay vuelos disponibles":
+        break
+      largoDeRuta +=1
+      ciudad = destinoDe(ciudad, vuelos)
+      
+    
+    if ciudad == destino:
+      return largoDeRuta
+    
+  return -1
 
 
 if __name__ == '__main__':
