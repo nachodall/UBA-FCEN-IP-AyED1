@@ -5,6 +5,9 @@ from typing import List
 # Respetar esta sintaxis, ya que el CMS dirá que no pasó ningún test si usan otra notación.
 def filasParecidas(matriz: List[List[int]]) -> bool :
 
+  if len(matriz) == 1:
+    return True
+
   n: int = matriz[1][0] - matriz[0][0]
   
   for i in range (1,len(matriz),1):
@@ -13,8 +16,6 @@ def filasParecidas(matriz: List[List[int]]) -> bool :
         return False
       
   return True
-
-
 
 if __name__ == '__main__':
   filas = int(input())
@@ -29,3 +30,4 @@ if __name__ == '__main__':
     matriz.append([int(j) for j in fila.split()])
   
   print(filasParecidas(matriz))
+  
