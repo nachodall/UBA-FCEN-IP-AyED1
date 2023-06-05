@@ -74,26 +74,14 @@ import numpy as np
 
 d: int = 2
 m = np.random.random((d,d))**2
-p: float = 2.5
-
-def matrizDeCeros(m:list[list[float]]) -> list[list[float]]:
-    res: list[list[float]] = []
-    filas: int = len(m)
-    columnas: int = len(m[0])
-
-    for i in range(0,filas,1):
-        fila = []
-        for j in range(0,columnas,1):
-            fila.append(0)
-        res.append(fila)
-
-    return res
+p: float = int(74)
 
 
 def multiplicacion(m:list[list[float]]) -> list[list[float]]:
     filas: int = len(m)
     columnas: int = len(m[0])
-    res: list[list[float]] = matrizDeCeros(m)
+    res: list[list[float]] = np.zeros((d, d)) #iniciar el res en 0
+
 
     for i in range(0,filas,1):
         for j in range(0,columnas,1):
@@ -102,9 +90,11 @@ def multiplicacion(m:list[list[float]]) -> list[list[float]]:
 
     return res
 
+def elevarMatriz(m:list[list[float]],p:float) -> list[list[float]]:
+    res = m
 
-
-print(multiplicacion([[1,2],[2,1]]))
-
+    for i in range(0,p-1):
+        res = multiplicacion(m)
+    return res
 
 
