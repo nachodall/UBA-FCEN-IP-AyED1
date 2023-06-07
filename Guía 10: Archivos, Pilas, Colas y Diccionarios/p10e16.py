@@ -29,5 +29,5 @@ def listaVacia(l:list) -> bool:
     return False
 
 bolillero = armarSecuenciaBingo()
-carton = [1,11,21,31,41.51,61,71,81,91,5,15]
+carton = [1,11,21,31,41,51,61,71,81,91,5,15]
 print(jugarCarton(carton,bolillero))
