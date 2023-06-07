@@ -1,14 +1,8 @@
-def leerArchivo(nombreArchivo: str):
-    with open(nombreArchivo, "r", encoding="utf8") as archivo:
-        contenido = archivo.read()
-    return contenido
-
 #al final
 def agregarFrase(s:str, nombreArchivo:str):
     archivo = open(nombreArchivo,"a",encoding="utf8")
     archivo.write('\n' + s)
     archivo.close()
-    return nombreArchivo
 
 #5 al principio
 def agregarFraseAlPrincipio(s:str, nombreArchivo:str):
