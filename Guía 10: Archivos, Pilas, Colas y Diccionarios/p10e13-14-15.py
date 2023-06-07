@@ -1,7 +1,7 @@
 from queue import Queue as Cola
 import random
 #aux
-def imprimirCola(c:Cola):
+def imprimirCola(c:Cola[int]):
     while not c.empty():
         e:int = c.get()
         print(e)
@@ -22,7 +22,7 @@ def armarCola(l:list[int]) -> Cola:
 
 
 #14
-def cantElementos(c:Cola) -> int:
+def cantElementos(c:Cola[int]) -> int:
     count:int = 0
     while not c.empty():
         count += 1
@@ -30,7 +30,7 @@ def cantElementos(c:Cola) -> int:
     return count
 
 #15
-def buscarElMaximo(c:Cola) -> int:
+def buscarElMaximo(c:Cola[int]) -> int:
     max = c.get()
     while not c.empty():
         e: int = c.get()
