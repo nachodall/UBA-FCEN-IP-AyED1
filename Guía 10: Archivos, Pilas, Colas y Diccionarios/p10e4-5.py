@@ -1,4 +1,4 @@
-#al final
+#4 al final
 def agregarFrase(s:str, nombreArchivo:str):
     archivo = open(nombreArchivo,"a",encoding="utf8")
     archivo.write('\n' + s)
