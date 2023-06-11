@@ -48,13 +48,15 @@ esDivisor n m = mod m n == 0
 --d) Implementar la funcion nEsimoPrimo :: Integer ->Integer que devuelve el n-esimo primo (n ≥ 1). Recordar que el
 --primer primo es el 2, el segundo es el 3, el tercero es el 5, etc
 
-nEsimoPrimo :: Integer -> Integer
-nEsimoPrimo n = primoAux n 1 0
+nEsimoPrimo :: Int -> Int
+nEsimoPrimo n = nEsimoPrimoAux n 0 1
 
-primoAux :: Integer -> Integer -> Integer -> Integer
-primoAux n aux cont | n == cont = aux - 1 --aux se aumento en uno luego de encontrar el nesimo primo
-                    | esPrimo aux == True = primoAux n (aux+1) (cont+1) 
-                    | otherwise = primoAux n (aux+1) cont
+nEsimoPrimoAux :: Int -> Int -> Int -> Int
+nEsimoPrimoAux n cont aux | esPrimo aux && cont == n-1 = aux
+                          | esPrimo aux = nEsimoPrimoAux n (cont+1) (aux+1)
+                          | otherwise = nEsimoPrimoAux n cont (aux+1)
+
+
 
 
 
