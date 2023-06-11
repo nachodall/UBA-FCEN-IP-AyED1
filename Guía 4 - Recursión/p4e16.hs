@@ -30,6 +30,21 @@ coprimosAux x y divisor | divisor > x || divisor > y = True
                          | (esDivisible x divisor) && (esDivisible y divisor) = False
                          | otherwise = coprimosAux x y (divisor + 1)
 
+sonCoprimosAlt :: Int -> Int -> Bool
+sonCoprimosAlt n x = mcd n x (menor n x) == 1
+
+menor :: Int -> Int -> Int
+menor n m
+  | n < m = n
+  | otherwise = m
+
+mcd :: Int -> Int -> Int -> Int
+mcd n x candidato | esDivisor candidato n && esDivisor candidato x = candidato
+                  | otherwise = mcd n x (candidato - 1)
+
+esDivisor :: Int -> Int -> Bool
+esDivisor n m = mod m n == 0
+
 --d) Implementar la funcion nEsimoPrimo :: Integer ->Integer que devuelve el n-esimo primo (n ≥ 1). Recordar que el
 --primer primo es el 2, el segundo es el 3, el tercero es el 5, etc
 
