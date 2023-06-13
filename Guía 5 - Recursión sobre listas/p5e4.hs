@@ -30,23 +30,14 @@ contarPalabrasAux (x:xs) | x == ' ' = 1 + contarPalabrasAux (xs)
 
 --4.3 palabraMasLarga :: [Char] -> [Char], que dada una lista de caracteres devuelve su palabra mas larga.
 palabraMasLarga :: [Char] -> [Char]
-palabraMasLarga lista = palabraMasLargaAux lista [] []
+palabraMasLarga l = palabraMasLargaAux (sacarBlancosRepetidos l) [] []
 
 palabraMasLargaAux :: [Char] -> [Char] -> [Char] -> [Char]
-palabraMasLargaAux [] actual masLarga = if
-                                          cantLetras (actual) > cantLetras (masLarga) then actual
-                                        else
-                                            masLarga
-palabraMasLargaAux (x:xs) actual masLarga | x /= ' ' = palabraMasLargaAux xs (actual ++ [x]) masLarga
-                                          | x == ' ' = if
-                                                          cantLetras (actual) > cantLetras (masLarga) then (palabraMasLargaAux xs [] actual)
-                                                       else 
-                                                          (palabraMasLargaAux xs [] masLarga)
+palabraMasLargaAux [] max _ = max 
+palabraMasLargaAux (x:xs) max aux | x == ' ' && longitud aux > longitud max = palabraMasLargaAux xs aux []
+                                  | x == ' ' = palabraMasLargaAux xs max []
+                                  | otherwise = palabraMasLargaAux xs max (aux +
 
-cantLetras :: [Char] -> Int
-cantLetras [] = 0
-cantLetras [x] = 1
-cantLetras (x:xs) = 1 + cantLetras xs
 
 --4.4 . palabras :: [Char] -> [[Char]], que dada una lista arma una nueva lista con las palabras de la lista original.
 --[h,o,l,a, ,j,u,a,n] -> [[hola],[juan]]
