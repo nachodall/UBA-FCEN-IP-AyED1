@@ -28,11 +28,11 @@ pertenece n (x:xs) | n == x = True
                    | otherwise = pertenece n xs
 
 --2.2
-todosIguales :: (Eq t) => [t] -> Bool
-todosIguales [] = True
-todosIguales [x] = True
-todosIguales (x:xs) | x /= (head xs)= False
-                    | otherwise = todosIguales (xs)  
+to2Iguales :: (Eq t) => [t] -> Bool
+to2Iguales [] = True
+to2Iguales [x] = True
+to2Iguales (x:y:xs) | x /= y = False
+                    | otherwise = to2Iguales (y:xs) 
 
 --2.3
 todosDistintos :: (Eq t) => [t] -> Bool 
