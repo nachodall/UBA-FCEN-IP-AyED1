@@ -66,13 +66,10 @@ quitarTodos elem (x:xs) | x == elem = quitarTodos elem xs
 --las repeticiones adicionales
 
 eliminarRepetidos :: (Eq t) => [t] -> [t]
-eliminarRepetidos lista = eliminarRepetidosAux lista []
-
-eliminarRepetidosAux :: (Eq t) => [t] -> [t] -> [t]
-eliminarRepetidosAux [] listaNueva = listaNueva 
-eliminarRepetidosAux (x:xs) listaNueva | pertenece x listaNueva = eliminarRepetidosAux xs listaNueva 
-                                       | otherwise = eliminarRepetidosAux xs (listaNueva ++ [x])
-
+eliminarRepetidos [] = []
+eliminarRepetidos (x:xs) | pertenece x xs = x : eliminarRepetidos (quitarTodos x xs)
+                         | otherwise = x : eliminarRepetidos xs
+                         
 --2.8 mismosElementos :: (Eq t) => [t] -> [t] -> Bool, que dadas dos listas devuelve verdadero sı y solamente sı
 --ambas listas contienen los mismos elementos, sin tener en cuenta repeticiones, es decir:
 
