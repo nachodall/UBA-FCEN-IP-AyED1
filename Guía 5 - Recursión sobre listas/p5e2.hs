@@ -74,12 +74,16 @@ eliminarRepetidos (x:xs) | pertenece x xs = x : eliminarRepetidos (quitarTodos x
 --ambas listas contienen los mismos elementos, sin tener en cuenta repeticiones, es decir:
 
 mismosElementos :: (Eq t) => [t] -> [t] -> Bool
-mismosElementos [] [] = True
-mismosElementos [] _ = False
-mismosElementos _ [] = False
-mismosElementos (x:xs) (y:ys) | x == y = mismosElementos xs ys 
-                              | otherwise = False
+mismosElementos l1 l2 = mismosElementosAux l1 l1 l2 l2 
 
+mismosElementosAux :: (Eq t) => [t] -> [t] -> [t] -> [t] -> Bool
+mismosElementosAux _ [] _ [] = True
+mismosElementosAux l1 [] l2 (y:ys) | pertenece y l1 = mismosElementosAux l1 [] l2 ys
+                                   | otherwise = False
+mismosElementosAux l1 (x:xs) l2 [] | pertenece x l2 = mismosElementosAux l1 xs l2 []
+                                   | otherwise = False                                   
+mismosElementosAux l1 (x:xs) l2 (y:ys) | pertenece x l2 && pertenece y l1 = mismosElementosAux l1 xs l2 ys
+                                       | otherwise = False
 --2.9 capicua :: (Eq t) => [t] -> Bool 
 
 capicua :: (Eq t) => [t] -> Bool 
