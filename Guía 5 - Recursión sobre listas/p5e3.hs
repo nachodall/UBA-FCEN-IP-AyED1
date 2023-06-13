@@ -9,14 +9,15 @@ ultimo [x] = x
 ultimo (x:xs) = ultimo xs
 
 -- 3.1 sumatoria :: [Integer] -> Integer segun la siguiente especificacion:
-sumatoria :: [Integer] -> Integer
-sumatoria (x:xs) | longitud xs == 0 = x 
-                 | otherwise = x + sumatoria xs
+sumatoria :: [Int] -> Int
+sumatoria [] = 0
+sumatoria (x:xs) = x + sumatoria xs
 
 --3.2 productoria :: [Integer] -> Integer segun la siguiente especificacion:
-productoria :: [Integer] -> Integer
-productoria (x:xs) | longitud xs == 0 = x 
-                   | otherwise = x * productoria xs
+productoria :: [Int] -> Int
+productoria [] = 0
+productoria [x] = x
+productoria (x:xs) = x * productoria xs
 
 --3.3 maximo :: [Integer] -> Integer segun la siguiente especificacion:
 maximo :: [Integer] -> Integer
