@@ -49,25 +49,18 @@ hayaRepetidos (x:xs) | pertenece x xs = True
 hayaRepetidos (x:xs) | otherwise = hayaRepetidos xs 
 
 --2.5 quitar :: (Eq t) => t -> [t] -> [t], que dada una lista xs y un elemento x, elimina la primera aparicion de x
-quitar :: (Eq t) => t -> [t] -> [t]
-quitar _ [] = []
-quitar e [x] | x == e = []
-             | otherwise = [x]
-quitar e (x:xs) | e == x = xs 
-                | otherwise = x : quitar e xs
+quitarUno :: (Eq t) => t -> [t] -> [t]
+quitarUno _ [] = []
+quitarUno elem (x:xs) | x == elem = xs 
+                      | otherwise = x : quitarUno elem xs
 
 --2.6 . quitarTodos :: (Eq t ) => t -> [t] -> [t], que dada una lista xs y un elemento x, elimina todas las apariciones
 --de x en la lista xs (de haberlas).
 
 quitarTodos :: (Eq t) => t -> [t] -> [t]
 quitarTodos _ [] = []
-quitarTodos e (x:xs) | e == x = quitarTodos e xs
-                     | otherwise = x : quitarTodos e xs
-
-quitarTodos2 :: (Eq t) => t -> [t] -> [t] -> [t]
-quitarTodos2 _ [] listaNueva = listaNueva
-quitarTodos2 e (x:xs) listaNueva | e == x = quitarTodos2 e xs listaNueva
-                                 | otherwise = quitarTodos2 e xs (listaNueva ++ [x])
+quitarTodos elem (x:xs) | x == elem = quitarTodos elem xs 
+                   | otherwise = x : quitarTodos elem xs
 
 --2.7 eliminarRepetidos :: (Eq t) => [t] -> [t] que deja en la lista una unica aparicion de cada elemento, eliminando
 --las repeticiones adicionales
