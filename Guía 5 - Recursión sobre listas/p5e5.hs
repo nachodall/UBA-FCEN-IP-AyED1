@@ -18,13 +18,14 @@ nat2bin n | mod n 2 == 0 =  nat2bin (div n 2) ++ [0]
           | otherwise =  nat2bin (div n 2) ++ [1]
 
 --5.2 bin2nat :: [Integer] -> Integer 
-bin2nat :: [Integer] -> Integer
-bin2nat binario = bin2natAux binario (longitud binario)
+bin2Nat :: [Int] -> Int
+bin2Nat n = bin2NatAux n (longitud n)
 
-bin2natAux :: [Integer] -> Integer -> Integer
-bin2natAux [] 0 = 0
-bin2natAux (x:xs) i | mod x 2 == 1 = 2^(i-1) + bin2natAux xs (i-1)
-                    | otherwise = bin2natAux xs (i-1)
+bin2NatAux :: [Int] -> Int -> Int
+bin2NatAux [] _ = 0
+bin2NatAux (x:xs) i | x == 1 = 2^(i-1) + bin2NatAux xs (i-1)
+                    | otherwise = bin2NatAux xs (i-1)
+
 
 --5.3 nat2hex :: Integer -> [Char], que recibe un numero no negativo y lo transforma en una lista de caracteres correspondiente a su representacion hexadecimal. 
 --Por ejemplo nat2hex 45 devuelve [’2’, ’D’].
