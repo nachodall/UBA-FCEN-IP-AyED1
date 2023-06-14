@@ -32,11 +32,9 @@ bin2NatAux (x:xs) i | x == 1 = 2^(i-1) + bin2NatAux xs (i-1)
 
 --5.4 sumaAcumulada :: (Num t) => [t] -> [t]:
 sumaAcumulada :: (Num t) => [t] -> [t]
-sumaAcumulada lista = sumaAcumuladaAux lista 0 []
-
-sumaAcumuladaAux :: (Num t) => [t] -> t -> [t] -> [t]
-sumaAcumuladaAux [] _ listaNueva = listaNueva
-sumaAcumuladaAux (x:xs) acumulador listaNueva = sumaAcumuladaAux xs (acumulador + x) (listaNueva ++ [acumulador + x])
+sumaAcumulada [] = []
+sumaAcumulada [x] = [x]
+sumaAcumulada (x:y:xs) = x : sumaAcumulada ((x+y):xs)
 
 --5.5 descomponerEnPrimos :: [Integer] -> [[Integer]] 
 descomponerEnPrimos :: [Integer] -> [[Integer]] 
