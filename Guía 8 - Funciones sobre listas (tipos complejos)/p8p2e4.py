@@ -48,7 +48,7 @@ m5 = []
 #3 filasOrdenadas
 def ordenada(l:list) -> bool:
     i: int = 0
-    while i <= len(l)-1-i:
+    while i < len(l):
         if l[i] > l[len(l)-1-i]:
             return False
         i+=1
