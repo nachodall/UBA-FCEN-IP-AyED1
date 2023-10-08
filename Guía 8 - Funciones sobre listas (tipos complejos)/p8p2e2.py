@@ -57,7 +57,7 @@ print(reemplazaVocales(cadena))
 
 #2.5 
 def invertirCadena(cadena:list) -> list:
-    cadenaNueva = cadena.copy()
+    cadenaNueva: list[char] = cadena.copy()
     for i in range(0,len(cadena),1):
         cadenaNueva[i] = cadena[len(cadena)-1-i]
     return cadenaNueva
